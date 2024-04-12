@@ -1,4 +1,4 @@
-FROM {{cookiecutter.docker_image}} as requirements-stage
+FROM {{cookiecutter.docker_python_image}} as requirements-stage
 WORKDIR /tmp
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -8,7 +8,7 @@ RUN apt-get clean && apt-get -y update && apt-get install -y locales && locale-g
 RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
 
-FROM {{cookiecutter.docker_image}} as develoment
+FROM {{cookiecutter.docker_python_image}} as develoment
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 WORKDIR /home/pdf_creator
@@ -18,7 +18,7 @@ RUN poetry install
 RUN apt-get clean && apt-get -y update && apt-get install -y locales && locale-gen es_ES.UTF-8
 CMD ["poetry","run" , "uvicorn", "main:app", "--host", "0.0.0.0"]
 
-FROM {{cookiecutter.docker_image}} as production
+FROM {{cookiecutter.docker_python_image}} as production
 RUN mkdir -p /home/{{cookiecutter.project_slug}}
 RUN addgroup --system app && adduser --system --group app
 ENV APP_home=/home/pdf_creator
