@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "pdf_creator"
+version = "0.1.0"
+description = "PDF Creator"
+authors = ["mattilda.io"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+fastapi = "^0.85.1"
+pydantic = "^1.10.2"
+uvicorn = "^0.19.0"
+weasyprint = "52.5"
+python-dotenv = "^0.21.0"
+Jinja2 = "^3.1.2"
+python-barcode = "^0.14.0"
+PyJWT = "^2.6.0"
+redis = "^4.5.1"
+grpcio-tools = "^1.51.0"
+grpcio = "^1.51.0"
+sentry-sdk = "^1.30.0"
+aiokafka = "^0.8.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
