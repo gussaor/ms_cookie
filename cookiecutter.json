@@ -2,6 +2,5 @@
     "project_name": "Unnamed Microservice",
     "project_description": "A short description of the project",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
-    "author": "Mattilda",
-    "docker_python_image": "python:3.10-slim-buster"
+    "author": "Mattilda"
 }
