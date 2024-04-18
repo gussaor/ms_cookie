@@ -11,7 +11,7 @@ RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 FROM python:3.10-slim-buster as develoment
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-WORKDIR /home/pdf_creator
+WORKDIR /home/{{cookiecutter.project_slug}}
 COPY ./pyproject.toml ./poetry.lock* ./
 RUN pip install poetry
 RUN poetry install
@@ -21,13 +21,14 @@ CMD ["poetry","run" , "uvicorn", "main:app", "--host", "0.0.0.0"]
 FROM python:3.10-slim-buster as production
 RUN mkdir -p /home/{{cookiecutter.project_slug}}
 RUN addgroup --system app && adduser --system --group app
-ENV APP_home=/home/pdf_creator
+ENV APP_home=/home/{{cookiecutter.project_slug}}
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV ENVIRONMENT=local
+
 WORKDIR $APP_home
-COPY --from=requirements-stage /tmp/requirements.txt /home/pdf_creator/requirements.txt
-RUN pip install --no-cache-dir --upgrade -r /home/pdf_creator/requirements.txt
+COPY --from=requirements-stage /tmp/requirements.txt /home/{{cookiecutter.project_slug}}/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /home/{{cookiecutter.project_slug}}/requirements.txt
 COPY . $APP_home
 RUN chown -R app:app $APP_home
 USER app
