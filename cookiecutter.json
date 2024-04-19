@@ -2,5 +2,6 @@
     "project_name": "Unnamed Microservice",
     "project_description": "A short description of the project",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
-    "author": "Mattilda"
+    "author": "Mattilda",
+    "optional_dir": "authy"
 }
