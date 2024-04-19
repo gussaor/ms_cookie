@@ -7,10 +7,10 @@ def eliminate_skip_directory() -> None:
     Eliminates a directory named 'skip' along with its contents.
     """
     decision: bool = {{ cookiecutter.include_optional_dir }}
-    c2: str = "{{ cookiecutter.dir_name }}"
+    c2: str = "{{ cookiecutter.optional_dir }}"
     c1: str = "{{ cookiecutter.project_slug }}"
     directory: str = f"{c1}\{c2}"
-    if decision==True:
+    if decision==False:
         try:
             sys.stdout.write(f"{directory}\n")
             skip_dir = os.path.join(os.getcwd(), c2)
