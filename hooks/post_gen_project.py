@@ -6,7 +6,7 @@ def eliminate_skip_directory() -> None:
     """
     Eliminates a directory named 'skip' along with its contents.
     """
-    decision: bool = {{ cookiecutter.del_dir1 }}
+    decision: bool = {{ cookiecutter.include_optional_dir }}
     c2: str = "{{ cookiecutter.dir_name }}"
     c1: str = "{{ cookiecutter.project_slug }}"
     directory: str = f"{c1}\{c2}"
